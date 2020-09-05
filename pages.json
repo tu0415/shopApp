@@ -1,0 +1,66 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{"path": "pages/login/login","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/login/register","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/home/home","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/home/shopDetail","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/home/integralShop","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/classify/classify","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/classify/classifyList","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/cart/cart","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/me","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/merchantAudit","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/allOrder","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/meCollect","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/about","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/addRess","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/ressList","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/editRess","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/feedback","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/notice","style": {"navigationBarTitleText": ""}},
+		{"path": "pages/me/noticeDetail","style": {"navigationBarTitleText": ""}}
+	],
+	
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#FF1D1D",
+		"backgroundColor": "#FFFFFF",
+		// "fontSize": "22rpx",
+		// "iconWidth": "40rpx",
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"text": "首页",
+				"iconPath": "/static/footer/tab01.png",
+				"selectedIconPath": "/static/footer/tab001.png"
+			},
+			{
+				"pagePath": "pages/classify/classify",
+				"text": "分类",
+				"iconPath": "/static/footer/tab02.png",
+				"selectedIconPath": "/static/footer/tab002.png"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"text": "购物车",
+				"iconPath": "/static/footer/tab04.png",
+				"selectedIconPath": "/static/footer/tab004.png"
+			},
+			{
+				"pagePath": "pages/me/me",
+				"text": "我的",
+				"iconPath": "/static/footer/tab04.png",
+				"selectedIconPath": "/static/footer/tab004.png"
+			}
+			
+		]
+	}
+	
+}
