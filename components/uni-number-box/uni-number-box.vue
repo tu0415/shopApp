@@ -3,7 +3,7 @@
 		<view @click="_calcValue('minus')" class="uni-numbox__minus">
 			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
 		</view>
-		<input :disabled="disabled" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
+		<input :disabled="disabled" @blur="_onBlur"  class="uni-numbox__value" type="number" v-model="inputValue" />
 		<view @click="_calcValue('plus')" class="uni-numbox__plus">
 			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
 		</view>
@@ -66,9 +66,10 @@
 		},
 		methods: {
 			_calcValue(type) {
-				if (this.disabled) {
-					return;
-				}
+				
+				// if (this.disabled) {
+				// 	return;
+				// }
 				const scale = this._getDecimalScale();
 				let value = this.inputValue * scale;
 				let step = this.step * scale;
@@ -80,6 +81,7 @@
 					if (value > (this.max * scale)) {
 						value = this.max * scale
 					}
+					
 				} else if (type === "plus") {
 					value += step;
 					if (value > (this.max * scale)) {
@@ -88,9 +90,11 @@
 					if (value < (this.min * scale)) {
 						value = this.min * scale
 					}
+					
 				}
-
+				this.$emit("minus", type);
 				this.inputValue = String(value / scale);
+				
 			},
 			_getDecimalScale() {
 				let scale = 1;

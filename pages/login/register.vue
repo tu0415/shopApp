@@ -9,7 +9,7 @@
 				<text class="daic">手机号</text>
 				<input type="number" class="f28" value="" v-model.trim="phone" placeholder="请输入手机号" />
 			</view>
-			<view class="f28 bgcfff br20 item djcsb mt20" style="padding-right: 10rpx;" >
+			<!-- <view class="f28 bgcfff br20 item djcsb mt20" style="padding-right: 10rpx;" >
 				<view class="daic">
 					<text class="daic">验证码</text>
 					<input class="f28" type="number" v-model.trim="code" placeholder="请输入验证码" />
@@ -17,7 +17,7 @@
 				
 				<text class="flex c00FFBA" v-if="!sendTime" @click="getCode">发送验证码</text>
 				<text class="flex c00FFBA" v-else >{{time}}s重新获取</text>
-			</view>
+			</view> -->
 			<view class="f28 bgcfff br20 item daic mt20">
 				<text class="daic">登录密码</text>
 				<input class="f28" type="password" maxlength="16" v-model.trim="password" placeholder="请设置登录密码" />
@@ -54,7 +54,6 @@
 		data() {
 			return {
 				phone: '', // 电话号码
-				account: '', // 账号
 				code: '', // 短信验证码
 				password: '', // 密码
 				passwords: '', // 确认密码
@@ -115,80 +114,24 @@
 			},
 			
 			// 注册
-			getRegister() {
-				let pwdReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
-				let payReg = /^\d{6}$/;
-				if (!this.account) {
-					uni.showToast({
-						title: '账号不能为空',
-						icon: 'none'
-					});
-					return false;
+			async getRegister() {
+				if(!this.$reg.phone.test(this.phone)) {
+					uni.showToast({title: '手机号格式不正确',icon: 'none'});return
 				}
-				if (!this.code) {
-					uni.showToast({
-						title: '验证码不能为空',
-						icon: 'none'
-					});
-					return false;
+				if(!this.$reg.password.test(this.password)) {
+					uni.showToast({title: '请输入6-16数字,字母组合密码',icon: 'none'});return
 				}
-				if (!this.password.trim() || !pwdReg.test(this.password)) {
-					uni.showToast({
-						title: '密码必须由 6-16位字母、数字组成',
-						icon: 'none'
-					});
-					return false;
+				 if(this.password != this.passwords) {
+					uni.showToast({title: '两次密码不一致',icon: 'none'});return
 				}
-				
-				if (!this.paycode.trim() || !payReg.test(this.paycodes)) {
-					uni.showToast({
-						title: '密码必须由 6位数字组成',
-						icon: 'none'
-					});
-					return false;
-				}
-				if (this.password != this.passwords) {
-					uni.showToast({
-						title: '两次密码不一致',
-						icon: 'none'
-					});
-					return false;
-				}
-				
-				if (!this.referrer) {
-					uni.showToast({
-						title: '请输入推荐码',
-						icon: 'none'
-					});
-					return false;
-				}
-				this.$http.quest(this.$API.login.register, "post", {
-					userName: this.account,
-					tel: this.phone,
-					pwd: this.password,
-					pwdQr: this.passwords,
-					payPwd: this.paycode,
-					payPwdQr: this.paycodes,
-					tuijianma: this.referrer, // 推荐人
-					card: this.code,
-				}).then(res => {
-					console.log(res)
-					if(res.code == 200) {
-						uni.showToast({title: res.msg,icon: 'none'});
-						setTimeout(()=>{uni.navigateTo({url:"/pages/login/login"})},1000)
-					} else {
-						uni.showToast({
-							title: res.msg,
-							icon: 'none'
-						});
-					}
-					console.log(res);
-					//打印请求返回的数据
-				
-				}, error => {
-					console.log(error);
+			let data = await this.$http.quest(this.$API.login.register, "get", {
+					phone: this.phone,
+					password: this.password,
+					confirmPassword: this.passwords,
 				})
-				
+				uni.showToast({title: data.msg,icon: 'none'});
+				uni.setStorageSync('token',data.token)
+				setTimeout(() => {uni.navigateTo({url: "/pages/login/login"})}, 1000)
 			},
 			onKeyInput(event,index) {
 				let i = event.target.value;

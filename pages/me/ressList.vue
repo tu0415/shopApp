@@ -8,139 +8,20 @@
 			
 		</view>
 		<view class="list ml30 mr30">
-			<view class="br20 bgcfff list-item djcai">
+			<view class="br20 bgcfff list-item djcai mb20" v-for="(item,i) in ressList" :key='i'>
 				<view class="address flex1 mr30" style="width: 500rpx;" >
 					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
+						<text class="f34 c333 mr15">{{item.name}}</text>
+						<text class="f28 c999">{{item.phone}}</text>
 					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
+					<view class="f25 mt30" >{{item.province}}{{item.city}}{{item.area}}</view>
 				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
+				<view class="dflex alfe flex-column">
+					<text class="f28 cff1" v-if="item.default == 1">默认</text>
+					<text class="f28 c333" @click="settingAddress(item.id)" v-else>设为默认</text>
+					<image class="wh40 mt20" src="../../static/home/collect-select.png" mode=""></image>
 				</view>
 			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			<view class="br20 bgcfff list-item djcai">
-				<view class="address flex1 mr30" style="width: 500rpx;" >
-					<view class="">
-						<text class="f34 c333 mr15">周杰伦</text>
-						<text class="f28 c999">15126880666</text>
-					</view>
-					<view class="f25 mt30" >广东省深圳市宝安区黄田社区黄田路西十巷3号</view>
-				</view>
-				<view class="flex flex-column">
-					<text class="f28 cff1">默认</text>
-					<image class="wh40 mt20" src="../../static/footer/tab001.png" mode=""></image>
-				</view>
-			</view>
-			
-			
-			
 		</view>
 		<view class="position-fixed bottom bgcf1f1 djcai">
 			<navigator url="/pages/me/addRess" hover-class="none"  class="bgcff3 flex w100 btn f34 fff">添加新地址</navigator>
@@ -154,15 +35,27 @@
 	export default {
 		data() {
 			return {
-
+				ressList:[]
 			}
 		},
 		components: {
 			Title,
 
 		},
+		onShow() {
+			this.getRessList()
+		},
 		methods: {
-
+			async getRessList() {
+				let {data} = await this.$http.quest(this.$API.car.addressList, "get", {})
+				this.ressList = data
+				
+			},
+			async settingAddress(id) {
+				let data = await this.$http.quest(this.$API.car.setDefault, "get", {id})
+				uni.showToast({title:data.msg,icon:'none'})
+				this.getRessList()
+			}
 		}
 	}
 </script>

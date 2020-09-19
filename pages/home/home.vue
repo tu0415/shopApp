@@ -52,16 +52,16 @@
 				<text class="f34 bold ml20 mr20">热销推荐</text>
 				<image class="wh30" src="../../static/footer/tab001.png" mode=""></image>
 			</view>
-			<view class="list">
-				<view class="br20 bgcfff shadow mb30 pb40">
-					<image class="shop-img" src="../../static/footer/tab001.png" mode=""></image>
+			<view class="list" v-for="(item,i) in shopList" :key="i">
+				<view class="br20 bgcfff shadow mb30 pb40" @click="pushPage('/pages/home/shopDetail?data=',{id:item.id},1)">
+					<image class="shop-img" :src="item.thumb" mode=""></image>
 					<view class="djcsb pl30 pr30">
-						<text class="f34 c333 bold">陕西眉县绿心猕猴桃礼盒装</text>
-						<text class="cff1 f34">￥50.00</text>
+						<text class="f34 c333 bold">{{item.name}}</text>
+						<text class="cff1 f34">￥{{item.price}}</text>
 					</view>
 					<view class="djcsb pl30 pr30 mt20">
-						<text class="f28 c666 " style="width: 460rpx;">陕西眉县绿心猕猴桃礼陕西眉县绿心猕猴桃盒装</text>
-						<text class="ccc f26">销量:20</text>
+						<text class="f28 c666 " style="width: 460rpx;">{{item.desc}}</text>
+						<text class="ccc f26">销量:{{item.sales}}</text>
 					</view>
 				</view>
 				
@@ -89,17 +89,23 @@ export default {
 			autoplay: true,
 			interval: 3000,
 			duration: 500,
+			shopList:[]
 		}
 	},
 	components: {
 		unipopup
 	},
 	onShow() {
-		
+		this.getShopListEvt()
 	},
 	methods:{
 		open() {
 			this.$refs.shade.open()
+		},
+		async getShopListEvt() {
+			let {data} = await this.$http.quest(this.$API.shop.goodsList, "get", {hot:1})
+			this.shopList = data
+			
 		}
 	}
 }
@@ -129,7 +135,7 @@ export default {
 			.shop-img {
 				height: 360rpx;
 				width: 100%;
-				border: 20rpx 20rpx 0 0 ;
+				border-radius: 20rpx 20rpx 0 0 ;
 			}
 		}
 		.shade-box {
